@@ -12,3 +12,6 @@ The videos I learned to get the knowledge to build the model:
 https://www.youtube.com/watch?v=nDPWywWRIRo
 https://www.youtube.com/watch?v=vr5rs_cTKCs
 
+I will try to build a model for human detection first, just to know how a R-CNN work.
+The URL to the dataset I will use:
+https://www.kaggle.com/constantinwerner/human-detection-dataset
