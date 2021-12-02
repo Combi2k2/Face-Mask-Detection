@@ -11,11 +11,9 @@ https://www.kaggle.com/vijaykumar1799/face-mask-detection
 
 ### Face-Detection
 The videos I learned to get the knowledge to build the model:
-<li>
-https://www.youtube.com/watch?v=nDPWywWRIRo
-https://www.youtube.com/watch?v=vr5rs_cTKCs
-https://www.youtube.com/watch?v=4tkgOzQ9yyo
-</li>
+<li> https://www.youtube.com/watch?v=nDPWywWRIRo</li>
+<li> https://www.youtube.com/watch?v=vr5rs_cTKCs</li>
+<li> https://www.youtube.com/watch?v=4tkgOzQ9yyo</li>
 
 I will try to build a model for human detection first, just to know how a R-CNN work.
 
