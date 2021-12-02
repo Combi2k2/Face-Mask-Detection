@@ -17,6 +17,11 @@ The videos I learned to get the knowledge to build the model:
 
 I will try to build a model for human detection first, just to know how a R-CNN work.
 
-The URL to the dataset I will use:
+The URL to the dataset I will use for checking my model:
 
-https://www.kaggle.com/constantinwerner/human-detection-dataset
+<li> https://www.kaggle.com/constantinwerner/human-detection-dataset </li>
+<li> https://www.kaggle.com/awsaf49/coco-2017-dataset </li>
+
+I will take this model as reference:
+
+https://medium.com/mlearning-ai/face-mask-detection-using-computer-vision-d4aa4ad8cacd
