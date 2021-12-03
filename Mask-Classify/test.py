@@ -17,6 +17,16 @@ import numpy as np
 from torchvision.datasets import ImageFolder
 from torchvision.transforms import ToTensor
 
+from matplotlib import cm
+
+import PIL
+
+transform_face = transforms.Compose([
+        #transforms.ToPILImage(),
+        transforms.Resize([64,64]),
+        transforms.ToTensor(),
+])
+
 class ConvNet(nn.Module):
     def __init__(self):
         super().__init__()
@@ -51,9 +61,8 @@ import cv2
 
 cv2.namedWindow("preview")
 cam = cv2.VideoCapture(0)
-itr = 0
 
-while (1):
+for itr in range(1000000000):
     ret, frame = cam.read()
     key = cv2.waitKey(20)
 
@@ -62,26 +71,38 @@ while (1):
 
     #cv2.imshow("preview", frame)
 
-    frame = cv2.resize(frame, dsize = (64, 64), interpolation=cv2.INTER_CUBIC)
-    frame = torch.from_numpy(frame)
+    frame = PIL.Image.fromarray(frame)
+    frame = transform_face(frame)
+    #frame = cv2.resize(frame, dsize = (64, 64), interpolation=cv2.INTER_CUBIC)
+    #frame = transforms.ToTensor(frame)
+
 
     frame = frame.permute(2, 0, 1)
+    frame = frame.reshape(1, 3, 64, 64)
 
-    frame = model.pool(F.relu(model.conv1(frame)))
-    frame = model.pool(F.relu(model.conv2(frame)))
+    #if (itr == 100):
+    #    print(frame)
+    #    break
 
-    print(frame)
-    break
+    with torch.no_grad():
+        frame = model.pool(F.relu(model.conv1(frame)))
+        frame = model.pool(F.relu(model.conv2(frame)))
+    
+    for i, channel in enumerate(frame[0]):
+        channel = channel.numpy()
+        channel = cv2.resize(channel, dsize = (200, 200), interpolation=cv2.INTER_CUBIC)
 
-    frame = frame.permute(1, 2, 0).numpy()
-    frame = cv2.resize(frame, dsize = (600, 400), interpolation=cv2.INTER_CUBIC)
+        cv2.imshow(f'preview channel{i}', channel)
 
-    cv2.imshow(f'preview', frame)
+    
+
+    #print(frame)
+    #break
+    #cv2.imshow(f'preview', frame)
 
     #if (itr == 100):
     #    cv2.imwrite('test1.jpg',frame)
     #    break
-    itr += 1
 
 cam.release()
 cv2.destroyWindow("preview")
