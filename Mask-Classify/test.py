@@ -1,4 +1,5 @@
 import torch
+#from torch._C import T
 import torchvision
 import pandas as pd
 import torch.nn as nn
@@ -69,40 +70,34 @@ for itr in range(1000000000):
     if (ret == False):  break
     if (key == 27):     break
 
-    #cv2.imshow("preview", frame)
+    cv2.imshow(f'Original', frame)#np.vstack((row1, row2)))
 
     frame = PIL.Image.fromarray(frame)
     frame = transform_face(frame)
-    #frame = cv2.resize(frame, dsize = (64, 64), interpolation=cv2.INTER_CUBIC)
-    #frame = transforms.ToTensor(frame)
-
 
     frame = frame.permute(2, 0, 1)
     frame = frame.reshape(1, 3, 64, 64)
 
-    #if (itr == 100):
-    #    print(frame)
-    #    break
-
     with torch.no_grad():
         frame = model.pool(F.relu(model.conv1(frame)))
         frame = model.pool(F.relu(model.conv2(frame)))
+
+    SAVE_FIG = False
+
+    if cv2.waitKey(32) == ord('a'):
+        SAVE_FIG = True
+    
+    rows = [None] * 4
     
     for i, channel in enumerate(frame[0]):
         channel = channel.numpy()
-        channel = cv2.resize(channel, dsize = (200, 200), interpolation=cv2.INTER_CUBIC)
+        channel = cv2.resize(channel, dsize = (500, 500), interpolation=cv2.INTER_CUBIC)
 
-        cv2.imshow(f'preview channel{i}', channel)
-
+        if (i % 4 == 0):    rows[i // 4] = channel
+        else:               rows[i // 4] = np.hstack((rows[i // 4], channel))
     
-
-    #print(frame)
-    #break
-    #cv2.imshow(f'preview', frame)
-
-    #if (itr == 100):
-    #    cv2.imwrite('test1.jpg',frame)
-    #    break
+    PIC = np.vstack((rows[0], rows[1], rows[2], rows[3]))
+    cv2.imshow(f'Transformed', PIC)#np.vstack((row1, row2)))
 
 cam.release()
 cv2.destroyWindow("preview")

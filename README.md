@@ -21,7 +21,9 @@ The URL to the dataset I will use for checking my model:
 
 <li> https://www.kaggle.com/constantinwerner/human-detection-dataset </li>
 <li> https://www.kaggle.com/awsaf49/coco-2017-dataset </li>
+<li> https://www.kaggle.com/ichchhayakantnetweb/widerface </li>
 
 I will take this model as reference:
 
-https://medium.com/mlearning-ai/face-mask-detection-using-computer-vision-d4aa4ad8cacd
+<li> https://medium.com/mlearning-ai/face-mask-detection-using-computer-vision-d4aa4ad8cacd </li>
+<li> https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html </li>
