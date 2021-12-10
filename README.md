@@ -26,4 +26,4 @@ The URL to the dataset I will use for checking my model:
 I will take this model as reference:
 
 <li> https://medium.com/mlearning-ai/face-mask-detection-using-computer-vision-d4aa4ad8cacd </li>
-<li> https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html </li>
+<li> https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html </li>x
